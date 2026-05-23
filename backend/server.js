@@ -1,30 +1,18 @@
-const express = require("express");
-const mongoose = require("mongoose");
-const cors = require("cors");
+const express=require("express");
+const mongoose=require("mongoose");
+const cors=require("cors");
 require("dotenv").config();
 
-const authRoutes = require("./routes/authRoutes");
-const leadRoutes = require("./routes/leadRoutes");
-const taskRoutes = require("./routes/taskRoutes");
+const authRoutes=require("./routes/authRoutes");
+const leadRoutes=require("./routes/leadRoutes");
+const taskRoutes=require("./routes/taskRoutes");
 
-const app = express();
+const app=express();
 
 app.use(
-
 cors({
-
-origin:[
-
-"http://localhost:5173",
-
-"https://manufacturing-bda-crm.vercel.app/"
-
-],
-
-credentials:true
-
+origin:"*"
 })
-
 );
 
 app.use(express.json());
@@ -50,8 +38,8 @@ app.use(
 taskRoutes
 );
 
-const PORT =
-process.env.PORT || 5000;
+const PORT=
+process.env.PORT||5000;
 
 mongoose.connect(
 process.env.MONGO_URI
@@ -68,20 +56,15 @@ PORT,
 ()=>{
 
 console.log(
-`Server running on ${PORT}`
+`Server ${PORT}`
 );
 
 });
 
 })
 
-.catch((err)=>{
+.catch(err=>{
 
-console.log(
-"Mongo Error:",
-err
-);
-
-process.exit(1);
+console.log(err);
 
 });

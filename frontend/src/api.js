@@ -1,9 +1,10 @@
 import axios from "axios";
 
-const API = axios.create({
+const API=axios.create({
 
 baseURL:
-"https://manufacturing-bda-crm.onrender.com"
+
+"https://manufacturing-bda-crm.onrender.com/api"
 
 });
 
@@ -11,14 +12,14 @@ API.interceptors.request.use(
 
 (config)=>{
 
-const token =
+const token=
 localStorage.getItem(
 "token"
 );
 
 if(token){
 
-config.headers.Authorization =
+config.headers.Authorization=
 `Bearer ${token}`;
 
 }

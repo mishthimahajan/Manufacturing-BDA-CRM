@@ -46,24 +46,24 @@ export default function Login() {
     }
   };
 
-  const handleGoogleLogin = (
-    credentialResponse
-  ) => {
-    try {
-      const user = jwtDecode(
-        credentialResponse.credential
-      );
+  // const handleGoogleLogin = (
+  //   credentialResponse
+  // ) => {
+  //   try {
+  //     const user = jwtDecode(
+  //       credentialResponse.credential
+  //     );
 
-      localStorage.setItem(
-        "googleUser",
-        JSON.stringify(user)
-      );
+  //     localStorage.setItem(
+  //       "googleUser",
+  //       JSON.stringify(user)
+  //     );
 
-      navigate("/dashboard");
-    } catch (err) {
-      console.log(err);
-    }
-  };
+  //     navigate("/dashboard");
+  //   } catch (err) {
+  //     console.log(err);
+  //   }
+  // };
 
   return (
     <div className="min-h-screen bg-linear-to-br from-indigo-950 via-purple-900 to-pink-800 flex">
@@ -194,7 +194,7 @@ Register
 
 </p>
 
-          <div className="flex justify-center">
+          {/* <div className="flex justify-center">
 
             <GoogleLogin
               onSuccess={
@@ -207,7 +207,7 @@ Register
               }}
             />
 
-          </div>
+          </div> */}
 
         </div>
 
