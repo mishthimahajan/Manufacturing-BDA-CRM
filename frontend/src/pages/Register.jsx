@@ -1,4 +1,4 @@
-import axios from "axios";
+import API from "../api";
 import { useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 
@@ -41,7 +41,7 @@ setLoading(true);
 
 await axios.post(
 
-"http://localhost:5000/api/auth/register",
+"/auth/register",
 
 form
 
