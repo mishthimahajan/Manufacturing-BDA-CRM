@@ -1,12 +1,16 @@
 const express = require("express");
 const mongoose = require("mongoose");
 const cors = require("cors");
-
 require("dotenv").config();
+
+const authRoutes = require("./routes/authRoutes");
+const leadRoutes = require("./routes/leadRoutes");
+const taskRoutes = require("./routes/taskRoutes");
 
 const app = express();
 
 app.use(cors());
+
 app.use(express.json());
 
 app.get("/",(req,res)=>{
@@ -17,48 +21,51 @@ res.send("Backend Running");
 
 app.use(
 "/api/auth",
-require("./routes/authRoutes")
+authRoutes
 );
 
 app.use(
 "/api/leads",
-require("./routes/leadRoutes")
+leadRoutes
 );
 
 app.use(
 "/api/tasks",
-require("./routes/taskRoutes")
+taskRoutes
 );
 
-const startServer = async()=>{
+const PORT =
+process.env.PORT || 5000;
 
-try{
-
-await mongoose.connect(
+mongoose.connect(
 process.env.MONGO_URI
-);
+)
+
+.then(()=>{
 
 console.log(
 "Mongo Connected"
 );
 
 app.listen(
-5000,
+PORT,
 ()=>{
 
 console.log(
-"Server running on port 5000"
+`Server running on ${PORT}`
 );
 
 });
 
-}
-catch(err){
+})
 
-console.log(err);
+.catch((err)=>{
 
-}
+console.log(
+"Mongo Error:",
+err
+);
 
-};
+process.exit(1);
 
-startServer();
+});
